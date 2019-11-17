@@ -1,0 +1,132 @@
+CREATE TABLE PERSON (
+  sno   number(12),
+  name   varchar(40),
+  pass    varchar(8),
+  bdate    date,
+  sex      char
+);
+
+CREATE TABLE DOCTOR (
+  sno           number(12),
+  branch        varchar(25),
+  expertise      varchar(25),
+  tax_no       varchar(25)
+);
+
+CREATE TABLE PRESCRIPTION (
+  sno number(12),
+  pres_no number(10),
+  ldtu date,
+  kind varchar(10) 
+);
+
+CREATE TABLE MEDICINE (
+  bcode      number(13),
+  mname      varchar(25),
+  atc_name   varchar(50),
+  atc_code  varchar(7),
+  use_type  varchar(15) 
+);
+
+CREATE TABLE ATC_AUTH (
+  sno      number(13),
+  atc_code  varchar(7)
+);
+
+CREATE TABLE CONTENT (
+  sno   number(12),
+  pres_no    number(10),
+  bcode  decimal(13),
+  amount number(2)
+);
+
+CREATE TABLE PHARMACIST (
+  sno      number(12),
+  tax_no   number(10)
+);
+
+CREATE TABLE HEALTH_INSTITUTION (
+  tax_no      number(10),
+  address     varchar(100)
+);
+
+CREATE TABLE PHARMACY (
+  tax_no   number(10),
+  pname varchar(25)
+);
+
+CREATE TABLE INVENTORY (
+  tax_no   number(10),
+  bcode decimal(13),
+  amount number(3)
+);
+
+CREATE TABLE DEPOT (
+  tax_no   number(10),
+  dname    varchar(25)
+);
+
+ALTER TABLE PERSON
+	ADD CONSTRAINT  XPKPERSON PRIMARY KEY (sno);
+	
+ALTER TABLE DOCTOR
+	ADD (CONSTRAINT  is_a_p1 FOREIGN KEY (sno) REFERENCES PERSON(sno) ON DELETE SET NULL);
+ALTER TABLE DOCTOR
+	ADD CONSTRAINT  XPKDOCTOR PRIMARY KEY (sno);
+
+ALTER TABLE PRESCRIPTION
+	ADD (CONSTRAINT  p2u FOREIGN KEY (sno) REFERENCES DOCTOR(sno));
+	
+ALTER TABLE PRESCRIPTION
+	ADD CONSTRAINT  XPKPRESCRIPTION PRIMARY KEY (sno, pres_no);
+
+ALTER TABLE MEDICINE
+	ADD CONSTRAINT  XPKMEDICINE PRIMARY KEY (bcode);
+
+ALTER TABLE ATC_AUTH
+	ADD (CONSTRAINT  atc4d FOREIGN KEY (sno) REFERENCES DOCTOR(sno) ON DELETE SET NULL);
+ALTER TABLE ATC_AUTH
+	ADD CONSTRAINT  XPKATCAUTH PRIMARY KEY (sno, atc_code);
+	
+ALTER TABLE CONTENT
+	ADD (CONSTRAINT  con4mdr FOREIGN KEY (sno) REFERENCES DOCTOR(sno));
+ALTER TABLE CONTENT
+	ADD (CONSTRAINT  pres4md FOREIGN KEY (pres_no) REFERENCES PRESCRIPTION(pres_no) ON DELETE SET NULL);
+ALTER TABLE CONTENT
+	ADD (CONSTRAINT  code4con FOREIGN KEY (bcode) REFERENCES MEDICINE(bcode));
+ALTER TABLE CONTENT 
+	ADD CONSTRAINT  XPKCONTENT PRIMARY KEY (sno, pres_no, bcode);
+	
+ALTER TABLE HEALTH_INSTITUTION
+	ADD CONSTRAINT  XPKHEALTHINS PRIMARY KEY (tax_no);
+
+ALTER TABLE PHARMACIST
+	ADD (CONSTRAINT  ph4tax FOREIGN KEY (tax_no) REFERENCES HEALTH_INSTITUTION(tax_no) ON DELETE SET NULL);
+ALTER TABLE PHARMACIST
+	ADD (CONSTRAINT  ph4sno FOREIGN KEY (sno) REFERENCES PERSON(sno) ON DELETE SET NULL);
+ALTER TABLE PHARMACIST
+	ADD CONSTRAINT  XPKPHSNO PRIMARY KEY (sno);
+	
+
+ALTER TABLE PHARMACY
+	ADD (CONSTRAINT  ph4ph FOREIGN KEY (tax_no) REFERENCES HEALTH_INSTITUTION(tax_no));
+ALTER TABLE PHARMACY
+	ADD CONSTRAINT  XPKPHARMACY PRIMARY KEY (tax_no);
+
+
+ALTER TABLE INVENTORY
+	ADD (CONSTRAINT  tax4ph FOREIGN KEY (tax_no) REFERENCES HEALTH_INSTITUTION(tax_no));
+ALTER TABLE INVENTORY
+	ADD (CONSTRAINT  bc4ph FOREIGN KEY (bcode) REFERENCES MEDICINE(bcode));
+ALTER TABLE INVENTORY
+	ADD CONSTRAINT  XPKINVENTORY PRIMARY KEY (tax_no, bcode);
+	
+ALTER TABLE DEPOT
+	ADD (CONSTRAINT  dp4dp FOREIGN KEY (tax_no) REFERENCES HEALTH_INSTITUTION(tax_no));
+ALTER TABLE DEPOT
+	ADD CONSTRAINT  XPKDEPOT PRIMARY KEY (tax_no);
+
+
+
+
+
