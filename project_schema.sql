@@ -31,7 +31,7 @@ CREATE TABLE DOCTOR (
   sno           int	NOT NULL,
   branch        varchar(25),
   expertise      varchar(25),
-  tax_no       varchar(25) NOT NULL UNIQUE,
+  tax_no       int NOT NULL UNIQUE,
   PRIMARY KEY (sno),
   FOREIGN KEY (sno) REFERENCES PERSON(sno) ON DELETE CASCADE
 
@@ -47,7 +47,8 @@ CREATE TABLE PRESCRIPTION (
   sno_doc int    NOT NULL UNIQUE,
   sno_pat int    NOT NULL UNIQUE,
   pres_no int    NOT NULL UNIQUE,
-  ldtu date,
+  expire date,
+  provision date,
   kind varchar(10) ,
   PRIMARY KEY (sno_doc, sno_pat, pres_no),      
   FOREIGN KEY (sno_doc) REFERENCES DOCTOR(sno),
@@ -57,27 +58,27 @@ CREATE TABLE PRESCRIPTION (
 
 CREATE TABLE MEDICINE (
   bcode      int	    NOT NULL,
-  mname      varchar(25),
+  mname      varchar(25)    UNIQUE,
   use_type  varchar(15),
   PRIMARY KEY (bcode)
 );
 
 CREATE TABLE MEDICINE_PROPS (
-  bcode      int	    NOT NULL,
+  mname      varchar(25)	    NOT NULL,
   brand      varchar(25),
   pack_form  varchar(20),
   use_type  varchar(15),
   howtouse      varchar(100),
-  PRIMARY KEY (bcode),
-  FOREIGN KEY (bcode) REFERENCES MEDICINE(bcode) ON DELETE CASCADE
+  PRIMARY KEY (mname),
+  FOREIGN KEY (mname) REFERENCES MEDICINE(mname) ON DELETE CASCADE
 );
 
 CREATE TABLE ACTIVE_INGREDIENT (
-  bcode      int	    NOT NULL,
+  mname      varchar(25)    NOT NULL,
   atc_name   varchar(50),
   atc_code  varchar(7),
-  PRIMARY KEY (bcode, atc_code),
-  FOREIGN KEY (bcode) REFERENCES MEDICINE(bcode) ON DELETE CASCADE 
+  PRIMARY KEY (mname, atc_code),
+  FOREIGN KEY (mname) REFERENCES MEDICINE(mname) ON DELETE CASCADE 
 );
 
 CREATE TABLE ATC_AUTH (
