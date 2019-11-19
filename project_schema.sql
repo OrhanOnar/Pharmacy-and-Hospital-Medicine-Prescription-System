@@ -76,14 +76,14 @@ CREATE TABLE MEDICINE_PROPS (
 CREATE TABLE ACTIVE_INGREDIENT (
   mname      varchar(25)    NOT NULL,
   atc_name   varchar(50),
-  atc_code  varchar(7),
+  atc_code  varchar(8),
   PRIMARY KEY (mname, atc_code),
   FOREIGN KEY (mname) REFERENCES MEDICINE(mname) ON DELETE CASCADE 
 );
 
 CREATE TABLE ATC_AUTH (
   sno      int	      NOT NULL UNIQUE,
-  atc_code  varchar(7) NOT NULL,
+  atc_code  varchar(8) NOT NULL,
   PRIMARY KEY (sno, atc_code),
   FOREIGN KEY (sno) REFERENCES DOCTOR(sno) ON DELETE CASCADE
 );
@@ -136,15 +136,16 @@ PRIMARY KEY (tax_no)
 );
 
 CREATE TABLE TRANSA (
-  trans_id int          NOT NULL,
-  tax_no_dep   int      NOT NULL,
-  tax_no_ph int         NOT NULL,  
+  trans_id      int      NOT NULL,
+  tax_no_dep    int      NOT NULL,
+  tax_no_ph     int      NOT NULL,  
+  bcode         int      NOT NULL,
   amount  number(3),
   time_of_trans date,
-  PRIMARY KEY (tax_no_dep, tax_no_ph, trans_id),
+  PRIMARY KEY (trans_id),
   FOREIGN KEY (tax_no_dep) REFERENCES DEPOT(tax_no),
-  FOREIGN KEY (tax_no_ph) REFERENCES PHARMACY(tax_no)
-
+  FOREIGN KEY (tax_no_ph) REFERENCES PHARMACY(tax_no),
+  FOREIGN KEY (bcode) REFERENCES MEDICINE(bcode)
 );
 
 CREATE SEQUENCE trans_seq START WITH 1;
