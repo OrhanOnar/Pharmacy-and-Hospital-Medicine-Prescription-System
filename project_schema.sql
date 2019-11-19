@@ -11,9 +11,14 @@ DROP TABLE PERSON CASCADE CONSTRAINTS;
 DROP TABLE MEDICINE CASCADE CONSTRAINTS;
 DROP TABLE PRESCRIPTION CASCADE CONSTRAINTS;
 DROP TABLE HEALTH_INSTITUTION CASCADE CONSTRAINTS;
+DROP TABLE ACTIVE_INGREDIENT CASCADE CONSTRAINTS;
+DROP TABLE MEDICINE_PROPS CASCADE CONSTRAINTS;
+
+DROP SEQUENCE pres_seq;
+DROP SEQUENCE trans_seq;
 
 CREATE TABLE PERSON (
-  sno   number(12) NOT NULL,
+  sno   int NOT NULL,
   fname   varchar(15)   NOT NULL,
   lname   varchar(15)   NOT NULL,
   pass    varchar(8)    NOT NULL,
@@ -23,25 +28,25 @@ CREATE TABLE PERSON (
 );
 
 CREATE TABLE DOCTOR (
-  sno           number(12)	NOT NULL,
+  sno           int	NOT NULL,
   branch        varchar(25),
   expertise      varchar(25),
-  tax_no       varchar(25),
+  tax_no       varchar(25) NOT NULL UNIQUE,
   PRIMARY KEY (sno),
   FOREIGN KEY (sno) REFERENCES PERSON(sno) ON DELETE CASCADE
 
 );
 
 CREATE TABLE PATIENT (
-  sno   number(12) NOT NULL,
+  sno   int NOT NULL,
   PRIMARY KEY (sno),
   FOREIGN KEY (sno) REFERENCES PERSON(sno) ON DELETE CASCADE
 );
 
 CREATE TABLE PRESCRIPTION (
-  sno_doc number(12)    NOT NULL UNIQUE,
-  sno_pat number(12)    NOT NULL UNIQUE,
-  pres_no number(10)    NOT NULL UNIQUE,
+  sno_doc int    NOT NULL UNIQUE,
+  sno_pat int    NOT NULL UNIQUE,
+  pres_no int    NOT NULL UNIQUE,
   ldtu date,
   kind varchar(10) ,
   PRIMARY KEY (sno_doc, sno_pat, pres_no),      
@@ -51,24 +56,40 @@ CREATE TABLE PRESCRIPTION (
 );
 
 CREATE TABLE MEDICINE (
-  bcode      number(13)	NOT NULL,
+  bcode      int	    NOT NULL,
   mname      varchar(25),
+  use_type  varchar(15),
+  PRIMARY KEY (bcode)
+);
+
+CREATE TABLE MEDICINE_PROPS (
+  bcode      int	    NOT NULL,
+  brand      varchar(25),
+  pack_form  varchar(20),
+  use_type  varchar(15),
+  howtouse      varchar(100),
+  PRIMARY KEY (bcode),
+  FOREIGN KEY (bcode) REFERENCES MEDICINE(bcode) ON DELETE CASCADE
+);
+
+CREATE TABLE ACTIVE_INGREDIENT (
+  bcode      int	    NOT NULL,
   atc_name   varchar(50),
   atc_code  varchar(7),
-  use_type  varchar(15),
-PRIMARY KEY (bcode) 
+  PRIMARY KEY (bcode, atc_code),
+  FOREIGN KEY (bcode) REFERENCES MEDICINE(bcode) ON DELETE CASCADE 
 );
 
 CREATE TABLE ATC_AUTH (
-  sno      number(13)	NOT NULL UNIQUE,
+  sno      int	      NOT NULL UNIQUE,
   atc_code  varchar(7) NOT NULL,
   PRIMARY KEY (sno, atc_code),
   FOREIGN KEY (sno) REFERENCES DOCTOR(sno) ON DELETE CASCADE
 );
 
 CREATE TABLE CONTENT (
-  pres_no    number(10) NOT NULL,
-  bcode  decimal(13)    NOT NULL,
+  pres_no    int      NOT NULL,
+  bcode      int      NOT NULL,
   amount number(2),
   FOREIGN KEY (pres_no) REFERENCES PRESCRIPTION(pres_no) ON  DELETE CASCADE,
   FOREIGN KEY (bcode) REFERENCES MEDICINE(bcode) ON DELETE CASCADE,
@@ -76,21 +97,21 @@ CREATE TABLE CONTENT (
 );
 
 CREATE TABLE HEALTH_INSTITUTION (
-  tax_no      number(10)	NOT NULL,
+  tax_no      int	    NOT NULL,
   address     varchar(100),
 PRIMARY KEY (tax_no)
 );
 
 CREATE TABLE PHARMACY (
-  tax_no   number(10)	NOT NULL,
+  tax_no   int	      NOT NULL,
   pname varchar(25),
   PRIMARY KEY (tax_no),
   FOREIGN KEY (tax_no) REFERENCES HEALTH_INSTITUTION(tax_no) ON DELETE CASCADE
 );
 
 CREATE TABLE PHARMACIST (
-  sno      number(12)	NOT NULL,
-  tax_no   number(10),
+  sno      int	      NOT NULL,
+  tax_no   int        NOT NULL,
   PRIMARY KEY(sno),
   FOREIGN KEY (sno) REFERENCES PERSON(sno) ON DELETE CASCADE,
   FOREIGN KEY (tax_no) REFERENCES PHARMACY(tax_no)
@@ -98,8 +119,8 @@ CREATE TABLE PHARMACIST (
 
 
 CREATE TABLE INVENTORY (	
-  tax_no   number(10)	NOT NULL,
-  bcode decimal(13)	NOT NULL,
+  tax_no   int	      NOT NULL,
+  bcode    int 	      NOT NULL,
   amount number(3),
   FOREIGN KEY (tax_no) REFERENCES HEALTH_INSTITUTION(tax_no) ON DELETE CASCADE,
   FOREIGN KEY (bcode) REFERENCES MEDICINE(bcode),
@@ -107,16 +128,16 @@ CREATE TABLE INVENTORY (
 );
 
 CREATE TABLE DEPOT (
-  tax_no   number(10)	NOT NULL,
+  tax_no   int	      NOT NULL,
   dname    varchar(25),
 FOREIGN KEY (tax_no) REFERENCES HEALTH_INSTITUTION(tax_no) ON DELETE CASCADE,
 PRIMARY KEY (tax_no)
 );
 
 CREATE TABLE TRANSA (
-  trans_id number(10),
-  tax_no_dep   number(10),
-  tax_no_ph number(10),  
+  trans_id int          NOT NULL,
+  tax_no_dep   int      NOT NULL,
+  tax_no_ph int         NOT NULL,  
   amount  number(3),
   time_of_trans date,
   PRIMARY KEY (tax_no_dep, tax_no_ph, trans_id),
