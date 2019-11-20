@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="assets/css/smoothproducts.css">
+</head>
+
+<body><div class="ui container centered grid">
+    <div class="row">
+        <div class="twelve wide column segment">
+
+            {% extends "base.html" %}
+
+            {% block content %}
+			<h2 class="ui header" align="left">Dashboard
+            <div class="sub header" align="left" style="margin-bottom:5px;">Welcome,
+                {% if current_user.user_type == 'doctor' %}Dr. {% endif %} {{ this_user.name }} (<strong>{{ current_user.username }}</strong>) 
+                
+            
+            </div></h2>
+        </div>  
+            <br>
+            <div class="row">
+                <div id="context1">
+                    <div class="ui first secondary pointing menu">
+                    {% if current_user.user_type == 'doctor' %} <a href="#" onclick="<a" class="item active" data-tab="patients">Patients</a>
+                    {% endif %}
+                        <a class="item {% if current_user.user_type == 'patient' %} active {% endif %}" data-tab="prescriptions">Prescriptions</a>
+                        <a class="item" data-tab="schedules">Schedules</a>
+                        <a class="item" data-tab="intakes">Intakes</a>
+                        
+                        <div class="right menu">
+                            <!-- {% block comment %}
+                            {% if current_user.user_type == 'doctor' %} <a href="#" onclick=
+                            <a class="link item" href={% url 'update-profile' %}>Edit My Profile</a>
+                            {% endif %}
+                            {% endblock %} -->
+                            <a class="link item" href="{%" url="" 'logout'="" %}=""><i class="sign out icon"></i>Logout</a>
+                        </div>
+                    </div>
+                </div>
+                {% if current_user.user_type == 'doctor' %}
+                <div class="ui active tab segment" data-tab="patients" style="padding:16px !important;">
+                    <h2>Patients</h2>
+                    <p>
+                    {% if patients %}
+                    
+                            {% for p in patients %}
+                            
+                            {% endfor %}
+                        <table class="ui celled table">
+                        <thead>
+                            <tr><th>#</th>
+                            <th>Name</th>
+                            <th>Username</th>
+                            <th>Key</th>
+                        </tr></thead>
+                        <tbody><tr>
+                                <td class="collapsing">{{ p.patient_id }}</td>
+                                <td>{{ p }}</td>
+                                <td>{{ p.user }}</td>
+                                <td>{{ p.key }}</td>
+                            </tr></tbody>
+                    </table>
+                        
+                    {% else %}
+                        No patients yet.
+                        
+                    {% endif %}
+                    </p>
+
+                    {% if current_user.user_type == 'doctor' %}<p><button class="ui small button" onclick="location.href='{% url 'patient-register' %}'"><i class="plus icon"></i> Add a patient</button></p> {% endif %}
+                </div>
+                {% endif %}
+
+                <div class="ui {% if current_user.user_type == 'patient' %} active {% endif %} tab segment" data-tab="prescriptions" style="padding:16px !important;">
+                    <h2>Prescriptions</h2>
+                    
+                    {% if prescriptions %}
+                    {% if current_user.user_type == 'doctor' %} <p>Click a row to edit a prescription.</p>{% endif %}
+                    
+                            {% if current_user.user_type == 'doctor' %}{% endif %}
+                            
+                            {% for pr in prescriptions %}
+                            
+                                {% if current_user.user_type == 'doctor' %} {% endif %}
+                                
+                                {% if current_user.user_type == 'doctor' %} {% endif %}
+                               
+                            {% endfor %}
+                        <table class="ui {% if current_user.user_type == 'doctor' %}selectable{% endif %} structured table">
+                        <thead>
+                        <tr>
+                            <th>ID</th><th>Patient</th><th>Medicine</th>
+                            <th>Quantity</th>
+                            <th>Notes</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody><tr {%="" if="" current_user.user_type="=" 'doctor'="" %}class="selectable" endif="" %}="">
+                                <td {%="" if="" current_user.user_type="=" 'doctor'="" %}onclick="location.href='{% url 'update-prescription' pid=pr.presc_id %}';" endif="" %}="">{{ pr.presc_id }}</td><td {%="" if="" current_user.user_type="=" 'doctor'="" %}onclick="location.href='{% url 'update-prescription' pid=pr.presc_id %}';" endif="" %}="">{{ pr.patient.name }}</td><td {%="" if="" current_user.user_type="=" 'doctor'="" %}onclick="location.href='{% url 'update-prescription' pid=pr.presc_id %}';" endif="" %}="">
+                                    {{ pr.medicine }}
+                                </td>
+                                <td {%="" if="" current_user.user_type="=" 'doctor'="" %}onclick="location.href='{% url 'update-prescription' pid=pr.presc_id %}';" endif="" %}="">
+                                    {{ pr.quantity }}
+                                </td>
+                                <td {%="" if="" current_user.user_type="=" 'doctor'="" %}onclick="location.href='{% url 'update-prescription' pid=pr.presc_id %}';" endif="" %}="">
+                                    {{ pr.notes }}
+                                </td><td onclick="delete_presc({{ pr.presc_id }});"><i class="trash alternate icon" title="Delete this prescription"></i></td></tr></tbody>
+                        </table>
+
+                    {% else %}
+                        <p>No prescriptions yet.</p>
+                    {% endif %}
+                    {% if current_user.user_type == 'doctor' %}<p><button class="ui small button" onclick="location.href='{% url 'add-prescription' %}'"><i class="plus icon"></i>Add a prescription</button></p> {% endif %}
+               
+{% endblock %}
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="assets/js/smoothproducts.min.js"></script>
+    <script src="assets/js/theme.js"></script>
+</body>
+
+</html>
