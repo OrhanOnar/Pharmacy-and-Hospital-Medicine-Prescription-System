@@ -19,10 +19,10 @@ public class Doctor
    @GeneratedValue( strategy = GenerationType.AUTO )
    private int               id;
 	private int               yetki;
-private String            brans;
+   private String            brans;
    private String            name;
    @OneToMany( mappedBy = "Doctor" )
-   private Collection<House> house = new ArrayList<House>();
+   private Collection<Person> person = new ArrayList<Person>();
 
    public int getId()
    {
@@ -40,7 +40,7 @@ private String            brans;
       return yetki;
    }
 
-   public void setId( int yetki )
+   public void setYetki( int yetki )
    {
       this.yetki = yetki;
    }
