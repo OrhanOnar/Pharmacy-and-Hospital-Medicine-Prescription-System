@@ -112,7 +112,7 @@ CREATE TABLE PHARMACIST (
   "sno"      varchar(13)	      NOT NULL,
   "tax_no"   int        NOT NULL,
   PRIMARY KEY("sno"),
-  FOREIGN KEY ("sno") REFERENCES PERSON(sno) ON DELETE CASCADE,
+  FOREIGN KEY ("sno") REFERENCES PERSON("sno") ON DELETE CASCADE,
   FOREIGN KEY ("tax_no") REFERENCES PHARMACY("tax_no")
 );
 
@@ -121,9 +121,9 @@ CREATE TABLE INVENTORY (
   "tax_no"   int	      NOT NULL,
   "bcode"    int 	      NOT NULL,
   "amount" number(3),
-  FOREIGN KEY (tax_no) REFERENCES HEALTH_INSTITUTION(tax_no) ON DELETE CASCADE,
-  FOREIGN KEY (bcode) REFERENCES MEDICINE(bcode),
-  PRIMARY KEY (tax_no, bcode)
+  FOREIGN KEY ("tax_no") REFERENCES HEALTH_INSTITUTION("tax_no") ON DELETE CASCADE,
+  FOREIGN KEY ("bcode") REFERENCES MEDICINE("bcode"),
+  PRIMARY KEY ("tax_no", "bcode")
 );
 
 CREATE TABLE DEPOT (
