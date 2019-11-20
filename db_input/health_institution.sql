@@ -17,3 +17,9 @@ INSERT INTO HEALTH_INSTITUTION ("tax_no", "build_name", "address") VALUES ('8275
 INSERT INTO HEALTH_INSTITUTION ("tax_no", "build_name", "address") VALUES ('6181404626', 'Demir Eczanesi', 'Oruçreis Mah. Barbaros Cad. 550. Sok. No:1 Yüzyıl Esenler İstanbul');
 INSERT INTO HEALTH_INSTITUTION ("tax_no", "build_name", "address") VALUES ('5232643323', 'Bahadır Eczanesi', 'Fevzi Çakmak Mah. Atışalanı Cad. No: 120 Sondurak Esenler İstanbul');
 INSERT INTO HEALTH_INSTITUTION ("tax_no", "build_name", "address") VALUES ('6823207778', 'Erdoğan Eczanesi', 'Kazım Karabekir Cad. No: 82/A İstanbul');
+INSERT INTO HEALTH_INSTITUTION ("tax_no", "build_name", "address") VALUES ('1740198379', 'Kadircan Eczanesi', 'Ã‡amlÄ±ca Mah. Anadolu BulvarÄ± 149. Sok Regnum Ä°s Merkezi 16B No:4, 06200 Yenimahalle/Ankara');
+INSERT INTO HEALTH_INSTITUTION ("tax_no", "build_name", "address") VALUES ('6454884655', 'SelÃ§uk Ecza Deposu', 'Macun, 177. Cd 19/F-2, 06374 Yenimahalle/Ankara');
+INSERT INTO HEALTH_INSTITUTION ("tax_no", "build_name", "address") VALUES ('3974822025', 'PHARMATÃœRK ECZA DEPO', 'Ä°OSB 1333. Cadde No:46, 06378 Yenimahalle/Ankara');
+INSERT INTO HEALTH_INSTITUTION ("tax_no", "build_name", "address") VALUES ('8117202345', 'Ares Ecza Deposu', 'Mutlukent, 1978. Cd. No:12, 06810 Ã‡ankaya/Ankara');
+INSERT INTO HEALTH_INSTITUTION ("tax_no", "build_name", "address") VALUES ('2246014904', 'Ankyra Ecza Deposu', 'ZÃ¼beyde HanÄ±m, ZÃ¼beyde HanÄ±m Mahallesi SulugÃ¶z Sokak 11/A, 06060 Ä°skitler/AltÄ±ndaÄŸ/Ankara');
+INSERT INTO HEALTH_INSTITUTION ("tax_no", "build_name", "address") VALUES ('2272897665', 'BaÅŸkent Cihan Ecza Deposu', '19 MayÄ±s, 19 MayÄ±s Cd. No:50, 06290 KeÃ§iÃ¶ren/Ankara');
