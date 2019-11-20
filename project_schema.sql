@@ -27,33 +27,10 @@ CREATE TABLE PERSON (
   PRIMARY KEY (sno)
 );
 
-CREATE TABLE DOCTOR (
-  sno           varchar(13)	NOT NULL,
-  branch        varchar(25),
-  expertise      varchar(25),
-  tax_no       int NOT NULL UNIQUE,
-  PRIMARY KEY (sno),
-  FOREIGN KEY (sno) REFERENCES PERSON(sno) ON DELETE CASCADE
-
-);
-
 CREATE TABLE PATIENT (
   sno   varchar(13) NOT NULL,
   PRIMARY KEY (sno),
   FOREIGN KEY (sno) REFERENCES PERSON(sno) ON DELETE CASCADE
-);
-
-CREATE TABLE PRESCRIPTION (
-  sno_doc varchar(13)    NOT NULL UNIQUE,
-  sno_pat varchar(13)    NOT NULL UNIQUE,
-  pres_no int    NOT NULL UNIQUE,
-  expire date,
-  provision date,
-  kind varchar(10) ,
-  PRIMARY KEY (sno_doc, sno_pat, pres_no),      
-  FOREIGN KEY (sno_doc) REFERENCES DOCTOR(sno),
-  FOREIGN KEY (sno_pat) REFERENCES PATIENT(sno)
-
 );
 
 CREATE TABLE MEDICINE (
@@ -81,11 +58,38 @@ CREATE TABLE ACTIVE_INGREDIENT (
   FOREIGN KEY (mname) REFERENCES MEDICINE(mname) ON DELETE CASCADE 
 );
 
+CREATE TABLE HEALTH_INSTITUTION (
+  tax_no      int	    NOT NULL,
+  address     varchar(100),
+PRIMARY KEY (tax_no)
+);
+
 CREATE TABLE ATC_AUTH (
-  sno      varchar(13)	      NOT NULL UNIQUE,
-  atc_code  varchar(8) NOT NULL,
-  PRIMARY KEY (sno, atc_code),
-  FOREIGN KEY (sno) REFERENCES DOCTOR(sno) ON DELETE CASCADE
+  branch      varchar(40)	NOT NULL UNIQUE,
+  atc_code  varchar(8)          NOT NULL,
+  PRIMARY KEY (branch, atc_code)
+);
+
+CREATE TABLE DOCTOR (
+  sno           varchar(13)	NOT NULL,
+  branch        varchar(40),
+  tax_no       int NOT NULL UNIQUE,
+  PRIMARY KEY (sno),
+  FOREIGN KEY (sno) REFERENCES PERSON(sno) ON DELETE CASCADE,
+  FOREIGN KEY (tax_no) REFERENCES HEALTH_INSTITUTION(tax_no),
+  FOREIGN KEY (branch) REFERENCES ATC_AUTH(branch)
+);
+
+CREATE TABLE PRESCRIPTION (
+  sno_doc varchar(13)    NOT NULL UNIQUE,
+  sno_pat varchar(13)    NOT NULL UNIQUE,
+  pres_no int    NOT NULL UNIQUE,
+  expire date,
+  provision date,
+  kind varchar(10) ,
+  PRIMARY KEY (sno_doc, sno_pat, pres_no),      
+  FOREIGN KEY (sno_doc) REFERENCES DOCTOR(sno),
+  FOREIGN KEY (sno_pat) REFERENCES PATIENT(sno)
 );
 
 CREATE TABLE CONTENT (
@@ -95,12 +99,6 @@ CREATE TABLE CONTENT (
   FOREIGN KEY (pres_no) REFERENCES PRESCRIPTION(pres_no) ON  DELETE CASCADE,
   FOREIGN KEY (bcode) REFERENCES MEDICINE(bcode) ON DELETE CASCADE,
   PRIMARY KEY (pres_no, bcode)
-);
-
-CREATE TABLE HEALTH_INSTITUTION (
-  tax_no      int	    NOT NULL,
-  address     varchar(100),
-PRIMARY KEY (tax_no)
 );
 
 CREATE TABLE PHARMACY (
