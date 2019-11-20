@@ -104,7 +104,6 @@ CREATE TABLE CONTENT (
 
 CREATE TABLE PHARMACY (
   "tax_no"   varchar(10)	      NOT NULL,
-  "pname" varchar(25),
   PRIMARY KEY ("tax_no"),
   FOREIGN KEY ("tax_no") REFERENCES HEALTH_INSTITUTION("tax_no") ON DELETE CASCADE
 );
