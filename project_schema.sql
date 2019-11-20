@@ -34,7 +34,7 @@ CREATE TABLE PATIENT (
 );
 
 CREATE TABLE MEDICINE (
-  "bcode"      int	    NOT NULL,
+  "bcode"      varchar(13)	    NOT NULL,
   "mname"      varchar(25)    NOT NULL UNIQUE,
   "use_type"  varchar(15),
   PRIMARY KEY ("bcode")
@@ -59,9 +59,10 @@ CREATE TABLE ACTIVE_INGREDIENT (
 );
 
 CREATE TABLE HEALTH_INSTITUTION (
-  "tax_no"      int	    NOT NULL,
+  "tax_no"      varchar(10)	    NOT NULL,
+  "build_name"  varchar(70)         NOT NULL,
   "address"     varchar(100),
-PRIMARY KEY ("tax_no")
+   PRIMARY KEY ("tax_no")
 );
 
 CREATE TABLE ATC_AUTH (
@@ -73,7 +74,7 @@ CREATE TABLE ATC_AUTH (
 CREATE TABLE DOCTOR (
   "sno"           varchar(13)	NOT NULL,
   "branch"        varchar(40),
-  "tax_no "      int NOT NULL UNIQUE,
+  "tax_no"      varchar(10) NOT NULL UNIQUE,
   PRIMARY KEY ("sno"),
   FOREIGN KEY ("sno") REFERENCES PERSON("sno") ON DELETE CASCADE,
   FOREIGN KEY ("tax_no") REFERENCES HEALTH_INSTITUTION("tax_no"),
@@ -94,7 +95,7 @@ CREATE TABLE PRESCRIPTION (
 
 CREATE TABLE CONTENT (
   "pres_no"    int      NOT NULL,
-  "bcode"      int      NOT NULL,
+  "bcode"      varchar(13)      NOT NULL,
   "amount" number(2),
   FOREIGN KEY ("pres_no") REFERENCES PRESCRIPTION("pres_no") ON  DELETE CASCADE,
   FOREIGN KEY ("bcode") REFERENCES MEDICINE("bcode") ON DELETE CASCADE,
@@ -102,7 +103,7 @@ CREATE TABLE CONTENT (
 );
 
 CREATE TABLE PHARMACY (
-  "tax_no"   int	      NOT NULL,
+  "tax_no"   varchar(10)	      NOT NULL,
   "pname" varchar(25),
   PRIMARY KEY ("tax_no"),
   FOREIGN KEY ("tax_no") REFERENCES HEALTH_INSTITUTION("tax_no") ON DELETE CASCADE
@@ -110,7 +111,7 @@ CREATE TABLE PHARMACY (
 
 CREATE TABLE PHARMACIST (
   "sno"      varchar(13)	      NOT NULL,
-  "tax_no"   int        NOT NULL,
+  "tax_no"   varchar(10)        NOT NULL,
   PRIMARY KEY("sno"),
   FOREIGN KEY ("sno") REFERENCES PERSON("sno") ON DELETE CASCADE,
   FOREIGN KEY ("tax_no") REFERENCES PHARMACY("tax_no")
@@ -118,8 +119,8 @@ CREATE TABLE PHARMACIST (
 
 
 CREATE TABLE INVENTORY (	
-  "tax_no"   int	      NOT NULL,
-  "bcode"    int 	      NOT NULL,
+  "tax_no"   varchar(10)	      NOT NULL,
+  "bcode"    varchar(13) 	      NOT NULL,
   "amount" number(3),
   FOREIGN KEY ("tax_no") REFERENCES HEALTH_INSTITUTION("tax_no") ON DELETE CASCADE,
   FOREIGN KEY ("bcode") REFERENCES MEDICINE("bcode"),
@@ -127,7 +128,7 @@ CREATE TABLE INVENTORY (
 );
 
 CREATE TABLE DEPOT (
-  "tax_no"   int	      NOT NULL,
+  "tax_no"   varchar(10)	      NOT NULL,
   "dname"    varchar(25),
 FOREIGN KEY ("tax_no") REFERENCES HEALTH_INSTITUTION("tax_no") ON DELETE CASCADE,
 PRIMARY KEY ("tax_no")
@@ -135,9 +136,9 @@ PRIMARY KEY ("tax_no")
 
 CREATE TABLE TRANSA (
   "trans_id"     int      NOT NULL,
-  "tax_no_dep"    int      NOT NULL,
-  "tax_no_ph"     int      NOT NULL,  
-  "bcode"         int      NOT NULL,
+  "tax_no_dep"    varchar(10)      NOT NULL,
+  "tax_no_ph"     varchar(10)      NOT NULL,  
+  "bcode"         varchar(13)      NOT NULL,
   "amount"  number(3),
   "time_of_trans" date,
   PRIMARY KEY ("trans_id"),
