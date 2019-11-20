@@ -60,7 +60,7 @@ CREATE TABLE ACTIVE_INGREDIENT (
 
 CREATE TABLE HEALTH_INSTITUTION (
   "tax_no"      varchar(10)	    NOT NULL,
-  "build_name"  varchar(70)     NOT NULL,
+  "build_name"  varchar(80)     NOT NULL,
   "address"     varchar(120),
    PRIMARY KEY ("tax_no")
 );
