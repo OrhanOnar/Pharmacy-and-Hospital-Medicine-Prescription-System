@@ -60,8 +60,8 @@ CREATE TABLE ACTIVE_INGREDIENT (
 
 CREATE TABLE HEALTH_INSTITUTION (
   "tax_no"      varchar(10)	    NOT NULL,
-  "build_name"  varchar(70)         NOT NULL,
-  "address"     varchar(100),
+  "build_name"  varchar(70)     NOT NULL,
+  "address"     varchar(120),
    PRIMARY KEY ("tax_no")
 );
 
@@ -128,7 +128,6 @@ CREATE TABLE INVENTORY (
 
 CREATE TABLE DEPOT (
   "tax_no"   varchar(10)	      NOT NULL,
-  "dname"    varchar(25),
 FOREIGN KEY ("tax_no") REFERENCES HEALTH_INSTITUTION("tax_no") ON DELETE CASCADE,
 PRIMARY KEY ("tax_no")
 );
