@@ -18,7 +18,7 @@ DROP SEQUENCE pres_seq;
 DROP SEQUENCE trans_seq;
 
 CREATE TABLE PERSON (
-  sno   int NOT NULL,
+  sno   varchar(13) NOT NULL,
   fname   varchar(15)   NOT NULL,
   lname   varchar(15)   NOT NULL,
   pass    varchar(8)    NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE PERSON (
 );
 
 CREATE TABLE DOCTOR (
-  sno           int	NOT NULL,
+  sno           varchar(13)	NOT NULL,
   branch        varchar(25),
   expertise      varchar(25),
   tax_no       int NOT NULL UNIQUE,
@@ -38,14 +38,14 @@ CREATE TABLE DOCTOR (
 );
 
 CREATE TABLE PATIENT (
-  sno   int NOT NULL,
+  sno   varchar(13) NOT NULL,
   PRIMARY KEY (sno),
   FOREIGN KEY (sno) REFERENCES PERSON(sno) ON DELETE CASCADE
 );
 
 CREATE TABLE PRESCRIPTION (
-  sno_doc int    NOT NULL UNIQUE,
-  sno_pat int    NOT NULL UNIQUE,
+  sno_doc varchar(13)    NOT NULL UNIQUE,
+  sno_pat varchar(13)    NOT NULL UNIQUE,
   pres_no int    NOT NULL UNIQUE,
   expire date,
   provision date,
@@ -58,7 +58,7 @@ CREATE TABLE PRESCRIPTION (
 
 CREATE TABLE MEDICINE (
   bcode      int	    NOT NULL,
-  mname      varchar(25)    UNIQUE,
+  mname      varchar(25)    NOT NULL UNIQUE,
   use_type  varchar(15),
   PRIMARY KEY (bcode)
 );
@@ -82,7 +82,7 @@ CREATE TABLE ACTIVE_INGREDIENT (
 );
 
 CREATE TABLE ATC_AUTH (
-  sno      int	      NOT NULL UNIQUE,
+  sno      varchar(13)	      NOT NULL UNIQUE,
   atc_code  varchar(8) NOT NULL,
   PRIMARY KEY (sno, atc_code),
   FOREIGN KEY (sno) REFERENCES DOCTOR(sno) ON DELETE CASCADE
@@ -111,7 +111,7 @@ CREATE TABLE PHARMACY (
 );
 
 CREATE TABLE PHARMACIST (
-  sno      int	      NOT NULL,
+  sno      varchar(13)	      NOT NULL,
   tax_no   int        NOT NULL,
   PRIMARY KEY(sno),
   FOREIGN KEY (sno) REFERENCES PERSON(sno) ON DELETE CASCADE,
@@ -169,6 +169,3 @@ BEGIN
   INTO   :new.pres_no
   FROM   dual
 END;
-
-
-
