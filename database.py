@@ -42,12 +42,35 @@ def is_Doctor(usersno):
         resultset = []
         for row in username:
             resultset.append(dict(row))
-        result = resultset[0]['sno']
+        if len(resultset) != 0:
+            return 1
+        else:
+            return 0
 
-    if result is not None:
-        return 1
-    else:
-        return 0
+def is_Patient(usersno):
+    with engine.connect() as con:
+        username = con.execute('SELECT "sno" FROM PATIENT WHERE "sno"=:no',no=usersno)
+        resultset = []
+        for row in username:
+            resultset.append(dict(row))
+        if len(resultset) != 0:
+            return 1
+        else:
+            return 0
+
+
+
+def is_Pharmacist(usersno):
+    with engine.connect() as con:
+        username = con.execute('SELECT "sno" FROM PHARMACIST WHERE "sno"=:no',no=usersno)
+        resultset = []
+        for row in username:
+            resultset.append(dict(row))
+        if len(resultset) != 0:
+            return 1
+        else:
+            return 0
+
 
 
 def all_sno():
