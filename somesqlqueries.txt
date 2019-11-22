@@ -1,0 +1,8 @@
+1) Hasta ismi/sno ya bağlı reçete geçmişi
+SELECT * FROM PATIENT P, PRESCRIPTION PRE, CONTENT C WHERE P."sno" = PRE."sno_pat" AND PRE."pres_no" = C."pres_no" AND P."sno" = 'enter our beloved patient sno';
+
+2)Doktorun kendi verebildiği ilaçlar
+SELECT (requested columns) FROM MEDICINE M, MEDICINE_PROPS MD, ACTIVE_INGREDIENT AC WHERE M."mname" = MD."mname" AND AC."mname" = M."mname" AND EXISTS( SELECT "atc_code" FROM ATC_AUTH AA, DOCTOR D WHERE D."branch" = AA."branch" AND AC."atc_code" = AA."atc_code" AND D."sno" = 'beloved doctors sno');
+
+3)Eczane depodan siparişte ilaç görmesi
+SELECT (requested columns) FROM MEDICINE M, MEDICINE_PROPS MD, DEPOT D, INVENTORY I WHERE M."mname" = MD."mname" AND D."tax_no" = I."tax_no" AND M."bcode" = I."bcode";
