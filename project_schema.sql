@@ -12,6 +12,7 @@ DROP TABLE MEDICINE CASCADE CONSTRAINTS;
 DROP TABLE PRESCRIPTION CASCADE CONSTRAINTS;
 DROP TABLE HEALTH_INSTITUTION CASCADE CONSTRAINTS;
 DROP TABLE ACTIVE_INGREDIENT CASCADE CONSTRAINTS;
+DROP TABLE TRANSA_CONTENT CASCADE CONSTRAINTS;
 DROP TABLE MEDICINE_PROPS CASCADE CONSTRAINTS;
 
 DROP SEQUENCE pres_seq;
@@ -128,20 +129,27 @@ CREATE TABLE INVENTORY (
 
 CREATE TABLE DEPOT (
   "tax_no"   varchar(10)	      NOT NULL,
-FOREIGN KEY ("tax_no") REFERENCES HEALTH_INSTITUTION("tax_no") ON DELETE CASCADE,
-PRIMARY KEY ("tax_no")
+  FOREIGN KEY ("tax_no") REFERENCES HEALTH_INSTITUTION("tax_no") ON DELETE CASCADE,
+  PRIMARY KEY ("tax_no")
 );
 
 CREATE TABLE TRANSA (
   "trans_id"     int      NOT NULL,
   "tax_no_dep"    varchar(10)      NOT NULL,
-  "tax_no_ph"     varchar(10)      NOT NULL,  
-  "bcode"         varchar(13)      NOT NULL,
-  "amount"  number(3),
+  "tax_no_ph"     varchar(10)      NOT NULL,
   "time_of_trans" date,
+  "amount"  number(3),
   PRIMARY KEY ("trans_id"),
   FOREIGN KEY ("tax_no_dep") REFERENCES DEPOT("tax_no"),
-  FOREIGN KEY ("tax_no_ph") REFERENCES PHARMACY("tax_no"),
+  FOREIGN KEY ("tax_no_ph") REFERENCES PHARMACY("tax_no")
+);
+
+CREATE TABLE TRANSA_CONTENT (
+  "trans_id"     int      NOT NULL,
+  "bcode"         varchar(13)      NOT NULL,
+  "amount"    number(3),
+  PRIMARY KEY ("trans_id", "bcode"),
+  FOREIGN KEY ("trans_id") REFERENCES TRANSA("trans_id"),
   FOREIGN KEY ("bcode") REFERENCES MEDICINE("bcode")
 );
 
