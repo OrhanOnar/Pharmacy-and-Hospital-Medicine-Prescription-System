@@ -134,7 +134,7 @@ CREATE TABLE RECEIPT (
   "phar_tax_no" varchar(10) NOT NULL,
   "pat_sno"  varchar(13) NOT NULL,
   "receipt_id"  int     NOT NULL UNIQUE,
-  PRIMARY KEY("phar_tax_no", pat_tax_no", "receipt_id"),
+  PRIMARY KEY("phar_tax_no", "pat_tax_no", "receipt_id"),
   FOREIGN KEY ("phar_tax_no") REFERENCES PHARMACY("tax_no"),
   FOREIGN KEY ("pat_sno") REFERENCES PATIENT("sno") ON DELETE CASCADE
  );
