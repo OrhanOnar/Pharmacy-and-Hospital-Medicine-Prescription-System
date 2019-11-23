@@ -159,7 +159,7 @@ CREATE TABLE TRANSA (
   "tax_no_dep"    varchar(10)      NOT NULL,
   "tax_no_ph"     varchar(10)      NOT NULL,
   "time_of_trans" date,
-  PRIMARY KEY ("trans_id"),
+  PRIMARY KEY ("trans_id", "tax_no_dep", "tax_no_ph"),
   FOREIGN KEY ("tax_no_dep") REFERENCES DEPOT("tax_no"),
   FOREIGN KEY ("tax_no_ph") REFERENCES PHARMACY("tax_no")
 );
