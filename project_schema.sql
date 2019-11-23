@@ -127,6 +127,24 @@ CREATE TABLE INVENTORY (
   PRIMARY KEY ("tax_no", "bcode")
 );
 
+CREATE TABLE RECEIPT (
+  "phar_tax_no" varchar(10) NOT NULL,
+  "pat_sno"  varchar(13) NOT NULL,
+  "receipt_id"  int         NOT NULL,
+  PRIMARY KEY("phar_tax_no", pat_tax_no", "receipt_id"),
+  FOREIGN KEY ("phar_tax_no") REFERENCES PHARMACY("tax_no"),
+  FOREIGN KEY ("pat_sno") REFERENCES PATIENT("sno") ON DELETE CASCADE
+ );
+              
+ CREATE TABLE RECEIPT_CONTENT (
+  "receipt_id"  int         NOT NULL,
+  "bcode"     varchar(13)   NOT NULL,
+  "amount"    number(2),
+  PRIMARY KEY("receipt_id", "bcode"),
+  FOREIGN KEY ("bcode") REFERENCES MEDICINE("bcode"),
+  FOREIGN KEY ("receipt_id") REFERENCES RECEIPT("receipt_id") ON DELETE CASCADE
+ );            
+
 CREATE TABLE DEPOT (
   "tax_no"   varchar(10)	      NOT NULL,
   FOREIGN KEY ("tax_no") REFERENCES HEALTH_INSTITUTION("tax_no") ON DELETE CASCADE,
