@@ -450,4 +450,3 @@ INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Zebeta
 INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Zegerid', 'B01AA03', 'Warfarin sodium');
 INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Zenpep', 'V10AA01', 'Yttrium (90Y) citrate colloid');
 INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Zestoretic', 'N05CF02', 'Zolpidem tartrate');
-INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Zestril', 'N03AX15', 'Zonisamide');
