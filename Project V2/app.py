@@ -17,8 +17,15 @@ app.config["SQLALCHEMY_ECHO"] = True
 login = LoginManager(app)
 login.login_view = 'login'
 
+@app.route('/contact-us/',methods=['GET','POST'])
+def contact_us():
 
+    return render_template('contact-us.html')
 
+@app.route('/bildirim/',methods=['GET','POST'])
+def bildirim():
+
+    return render_template('bildirim.html')
 
 @login.user_loader
 def load_user(sno):
