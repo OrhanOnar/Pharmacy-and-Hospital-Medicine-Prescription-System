@@ -92,21 +92,11 @@ def check_doctor_auth(doctorno):
             resultset.append(dict(row))
         return resultset
 
-def check_doctor_auth(doctorno):
-    with engine.connect() as con:
-        auth = con.execute('SELECT AC."mname", AC."atc_name" FROM ACTIVE_INGREDIENT AC WHERE AC."atc_code" IN ( SELECT "atc_code" FROM ATC_AUTH AA, DOCTOR D WHERE AA."branch" = D."branch" AND D."sno" =:no)',no=doctorno)
-        resultset = []
-        for row in auth:
-            resultset.append(dict(row))
-        return resultset
 
 def depot_inv_check(depot_tax_no):
     with engine.connect() as con:
         inv = con.execute('SELECT M."mname", H."build_name" FROM MEDICINE M, DEPOT D, INVENTORY I, HEALTH_INSTITUTION H WHERE  D."tax_no" = I."tax_no" AND M."bcode" = I."bcode" AND H."tax_no"=D."tax_no" SORT BY M."mname" ASC')
-        resultset = []
-        for item in inv:
-            resultset.append(dict(item))
-        return resultset
+        return inv
     
 def depot_inv_search(med_name):
     with engine.connect() as con:
