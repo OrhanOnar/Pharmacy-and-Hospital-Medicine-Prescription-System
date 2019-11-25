@@ -12,8 +12,12 @@ DROP TABLE MEDICINE CASCADE CONSTRAINTS;
 DROP TABLE PRESCRIPTION CASCADE CONSTRAINTS;
 DROP TABLE HEALTH_INSTITUTION CASCADE CONSTRAINTS;
 DROP TABLE ACTIVE_INGREDIENT CASCADE CONSTRAINTS;
+DROP TABLE TRANSA_CONTENT CASCADE CONSTRAINTS;
 DROP TABLE MEDICINE_PROPS CASCADE CONSTRAINTS;
+DROP TABLE RECEIPT CASCADE CONSTRAINTS;
+DROP TABLE RECEIPT_CONTENT CASCADE CONSTRAINTS;
 
+DROP SEQUENCE rec_seq;
 DROP SEQUENCE pres_seq;
 DROP SEQUENCE trans_seq;
 
@@ -121,48 +125,75 @@ CREATE TABLE INVENTORY (
   "tax_no"   varchar(10)	      NOT NULL,
   "bcode"    varchar(13) 	      NOT NULL,
   "amount" number(3),
+  PRIMARY KEY ("tax_no", "bcode"),
   FOREIGN KEY ("tax_no") REFERENCES HEALTH_INSTITUTION("tax_no") ON DELETE CASCADE,
   FOREIGN KEY ("bcode") REFERENCES MEDICINE("bcode"),
-  PRIMARY KEY ("tax_no", "bcode")
 );
+
+CREATE TABLE RECEIPT (
+  "phar_tax_no" varchar(10) NOT NULL,
+  "pat_sno"  varchar(13) NOT NULL,
+  "receipt_id"  int     NOT NULL UNIQUE,
+  PRIMARY KEY("phar_tax_no", "pat_tax_no", "receipt_id"),
+  FOREIGN KEY ("phar_tax_no") REFERENCES PHARMACY("tax_no"),
+  FOREIGN KEY ("pat_sno") REFERENCES PATIENT("sno") ON DELETE CASCADE
+ );
+              
+ CREATE TABLE RECEIPT_CONTENT (
+  "receipt_id"  int         NOT NULL,
+  "bcode"     varchar(13)   NOT NULL,
+  "amount"    number(2),
+  PRIMARY KEY("receipt_id", "bcode"),
+  FOREIGN KEY ("bcode") REFERENCES MEDICINE("bcode"),
+  FOREIGN KEY ("receipt_id") REFERENCES RECEIPT("receipt_id") ON DELETE CASCADE
+ );            
 
 CREATE TABLE DEPOT (
   "tax_no"   varchar(10)	      NOT NULL,
-FOREIGN KEY ("tax_no") REFERENCES HEALTH_INSTITUTION("tax_no") ON DELETE CASCADE,
-PRIMARY KEY ("tax_no")
+  FOREIGN KEY ("tax_no") REFERENCES HEALTH_INSTITUTION("tax_no") ON DELETE CASCADE,
+  PRIMARY KEY ("tax_no")
 );
 
 CREATE TABLE TRANSA (
   "trans_id"     int      NOT NULL,
   "tax_no_dep"    varchar(10)      NOT NULL,
-  "tax_no_ph"     varchar(10)      NOT NULL,  
-  "bcode"         varchar(13)      NOT NULL,
-  "amount"  number(3),
+  "tax_no_ph"     varchar(10)      NOT NULL,
   "time_of_trans" date,
-  PRIMARY KEY ("trans_id"),
+  PRIMARY KEY ("trans_id", "tax_no_dep", "tax_no_ph"),
   FOREIGN KEY ("tax_no_dep") REFERENCES DEPOT("tax_no"),
-  FOREIGN KEY ("tax_no_ph") REFERENCES PHARMACY("tax_no"),
+  FOREIGN KEY ("tax_no_ph") REFERENCES PHARMACY("tax_no")
+);
+
+CREATE TABLE TRANSA_CONTENT (
+  "trans_id"     int      NOT NULL,
+  "bcode"         varchar(13)      NOT NULL,
+  "amount"    number(3),
+  PRIMARY KEY ("trans_id", "bcode"),
+  FOREIGN KEY ("trans_id") REFERENCES TRANSA("trans_id"),
   FOREIGN KEY ("bcode") REFERENCES MEDICINE("bcode")
 );
 
-CREATE SEQUENCE trans_seq START WITH 1;
 
-CREATE OR REPLACE TRIGGER trans_trig 
-BEFORE INSERT ON TRANSA 
-FOR EACH ROW
-BEGIN
-  SELECT trans_seq.NEXTVAL
-  INTO   :new.trans_id
-  FROM   dual
-END;
-
-CREATE SEQUENCE pres_seq START WITH 1;
-
-CREATE OR REPLACE TRIGGER pres_trig 
-BEFORE INSERT ON PRESCRIPTION 
-FOR EACH ROW
-BEGIN
-  SELECT pres_seq.NEXTVAL
-  INTO   :new.pres_no
-  FROM   dual
-END;
+CREATE SEQUENCE trans_seq
+  MINVALUE 1
+  MAXVALUE 20000000
+  START WITH 1
+  INCREMENT BY 1
+  NOCYCLE
+  CACHE 150;
+              
+CREATE SEQUENCE pres_seq
+  MINVALUE 1
+  MAXVALUE 20000000
+  START WITH 1
+  INCREMENT BY 1
+  NOCYCLE
+  CACHE 150;
+              
+CREATE SEQUENCE rec_seq
+  MINVALUE 1
+  MAXVALUE 20000000
+  START WITH 1
+  INCREMENT BY 1
+  NOCYCLE
+  CACHE 150;
