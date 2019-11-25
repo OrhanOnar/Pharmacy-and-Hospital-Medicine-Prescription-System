@@ -40,7 +40,6 @@ CREATE TABLE PATIENT (
 CREATE TABLE MEDICINE (
   "bcode"      varchar(13)	    NOT NULL,
   "mname"      varchar(25)    NOT NULL UNIQUE,
-  "use_type"  varchar(15),
   PRIMARY KEY ("bcode")
 );
 
