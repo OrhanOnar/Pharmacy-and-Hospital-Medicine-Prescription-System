@@ -69,7 +69,7 @@ CREATE TABLE HEALTH_INSTITUTION (
 );
 
 CREATE TABLE ATC_AUTH (
-  "branch"     varchar(40)	NOT NULL,
+  "branch"     varchar(45)	NOT NULL,
   "atc_code"  varchar(10)          NOT NULL,
   PRIMARY KEY ("branch", "atc_code")
 );
