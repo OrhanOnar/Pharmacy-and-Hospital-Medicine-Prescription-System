@@ -47,7 +47,7 @@ CREATE TABLE MEDICINE_PROPS (
   "mname"      varchar(25)	    NOT NULL,
   "brand"      varchar(25),
   "pack_form"  varchar(20),
-  "use_type"  varchar(15),
+  "use_type"  varchar(30),
   "howtouse"      varchar(100),
   PRIMARY KEY ("mname"),
   FOREIGN KEY ("mname") REFERENCES MEDICINE("mname") ON DELETE CASCADE
