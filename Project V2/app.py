@@ -10,9 +10,6 @@ from user import User
 
 app = Flask(__name__)
 
-STATIC_ROOT = os.path.join(os.path.dirname(__file__), 'static/')
-STATIC_URL = '/static/'
-app._static_folder = STATIC_URL
 
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
