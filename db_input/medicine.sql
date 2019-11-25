@@ -255,7 +255,7 @@ INSERT INTO MEDICINE ("bcode", "mname") VALUES ('8699820030360','Orlistat');
 INSERT INTO MEDICINE ("bcode", "mname") VALUES ('8699759090022','Orphenadrine');
 INSERT INTO MEDICINE ("bcode", "mname") VALUES ('8699809010505','Ortho Tri-Cyclen');
 INSERT INTO MEDICINE ("bcode", "mname") VALUES ('8699580010329','Oseltamivir');
-INSERT INTO MEDICINE ("bcode", "mname") VALUES ('8699580010329','Otezla');
+INSERT INTO MEDICINE ("bcode", "mname") VALUES ('8699580010330','Otezla');
 INSERT INTO MEDICINE ("bcode", "mname") VALUES ('8699532090744','Oxaliplatin');
 INSERT INTO MEDICINE ("bcode", "mname") VALUES ('8699522490738','Oxazepam');
 INSERT INTO MEDICINE ("bcode", "mname") VALUES ('8697929021371','Oxcarbazepine');
