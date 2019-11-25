@@ -39,12 +39,12 @@ CREATE TABLE PATIENT (
 
 CREATE TABLE MEDICINE (
   "bcode"      varchar(13)	    NOT NULL,
-  "mname"      varchar(25)    NOT NULL UNIQUE,
+  "mname"      varchar(35)    NOT NULL UNIQUE,
   PRIMARY KEY ("bcode")
 );
 
 CREATE TABLE MEDICINE_PROPS (
-  "mname"      varchar(25)	    NOT NULL,
+  "mname"      varchar(35)	    NOT NULL,
   "brand"      varchar(25),
   "pack_form"  varchar(20),
   "use_type"  varchar(30),
@@ -54,8 +54,8 @@ CREATE TABLE MEDICINE_PROPS (
 );
 
 CREATE TABLE ACTIVE_INGREDIENT (
-  "mname"      varchar(25)    NOT NULL,
-  "atc_name"   varchar(50),
+  "mname"      varchar(35)    NOT NULL,
+  "atc_name"   varchar(100),
   "atc_code"  varchar(8),
   PRIMARY KEY ("mname", "atc_code"),
   FOREIGN KEY ("mname") REFERENCES MEDICINE("mname") ON DELETE CASCADE 
@@ -70,7 +70,7 @@ CREATE TABLE HEALTH_INSTITUTION (
 
 CREATE TABLE ATC_AUTH (
   "branch"     varchar(40)	NOT NULL,
-  "atc_code"  varchar(8)          NOT NULL,
+  "atc_code"  varchar(10)          NOT NULL,
   PRIMARY KEY ("branch", "atc_code")
 );
 
