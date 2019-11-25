@@ -5,12 +5,22 @@ import os
 from flask_login import login_user , LoginManager, login_required
 from user import User
 
+
+
+
 app = Flask(__name__)
+
+STATIC_ROOT = os.path.join(os.path.dirname(__file__), 'static/')
+STATIC_URL = '/static/'
+app._static_folder = STATIC_URL
+
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
 app.config["SQLALCHEMY_ECHO"] = True
 login = LoginManager(app)
 login.login_view = 'login'
+
+
 
 
 @login.user_loader
@@ -36,28 +46,28 @@ def login():
             user_obj=User(username)
             login_user(user_obj,remember=True)
             if is_Doctor(sno):
-                return redirect(url_for('doctor',user_id=username))
+                return redirect(url_for('DoktorEkranı',user_id=username))
             elif is_Patient(sno):
-                return redirect(url_for('patient', user_id=username))
+                return redirect(url_for('Hasta ekranı', user_id=username))
             elif is_Pharmacist(sno):
-                return redirect(url_for('pharmacist', user_id=username))
+                return redirect(url_for('receteNoGiris', user_id=username))
     return render_template('login.html', form=form)
 
 @login_required
-@app.route('/doctor/<user_id>',methods=['GET','POST'])
+@app.route('/DoktorEkranı/<user_id>',methods=['GET','POST'])
 def doctor(user_id):
 
-    return render_template('doctor.html')
+    return render_template('DoktorEkranı.html.html')
 
 @login_required
-@app.route('/patient/<user_id>',methods=['GET','POST'])
+@app.route('/Hasta ekranı/<user_id>',methods=['GET','POST'])
 def patient(user_id):
 
-    return render_template('patient.html')
+    return render_template('Hasta ekranı.html.html')
 
 @login_required
 @app.route('/receteNoGiris/<user_id>',methods=['GET','POST'])
-def pharmacist(user_id):
+def receteNoGiris(user_id):
 
     return render_template('receteNoGiris.html')
 

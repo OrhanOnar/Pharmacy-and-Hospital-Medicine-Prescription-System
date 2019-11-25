@@ -24,11 +24,11 @@
             {% block content %}
 			<h2 class="ui header" align="left">&nbsp&nbsp
             <div class="sub header" align="left" style="margin-bottom:5px;">Welcome,
-                {% if current_user.user_type == 'doctor' %}Dr. {% endif %} {{ this_user.name }} (<strong>{{ current_user.username }}</strong>)
-
-
+                {% if current_user.user_type == 'doctor' %}Dr. {% endif %} {{ this_user.name }} (<strong>{{ current_user.username }}</strong>) 
+                
+            
             </div></h2>
-        </div>
+        </div>  
             <br>
             <div class="row">
                 <div id="context1">
@@ -38,7 +38,7 @@
                         <a class="item {% if current_user.user_type == 'patient' %} active {% endif %}" data-tab="prescriptions">Prescriptions</a>
                         <a class="item" data-tab="schedules">Schedules</a>
                         <a class="item" data-tab="intakes">Intakes</a>
-
+                        
                         <div class="right menu">
                             <a class="link item" href="{%" url="" 'logout'="" %}=""><i class="sign out icon"></i>Logout</a>
                         </div>
@@ -49,9 +49,9 @@
                     <h2>Patients</h2>
                     <p>
                     {% if patients %}
-
+                    
                             {% for p in patients %}
-
+                            
                             {% endfor %}
                         <table class="ui celled table">
                         <thead>
@@ -67,10 +67,10 @@
                                 <td>{{ p.key }}</td>
                             </tr></tbody>
                     </table>
-
+                        
                     {% else %}
                         No patients yet.
-
+                        
                     {% endif %}
                     </p>
 
@@ -80,18 +80,18 @@
 
                 <div class="ui {% if current_user.user_type == 'patient' %} active {% endif %} tab segment" data-tab="prescriptions" style="padding:16px !important;">
                     <h2>Prescriptions</h2>
-
+                    
                     {% if prescriptions %}
                     {% if current_user.user_type == 'doctor' %} <p>Click a row to edit a prescription.</p>{% endif %}
-
+                    
                             {% if current_user.user_type == 'doctor' %}{% endif %}
-
+                            
                             {% for pr in prescriptions %}
-
+                            
                                 {% if current_user.user_type == 'doctor' %} {% endif %}
-
+                                
                                 {% if current_user.user_type == 'doctor' %} {% endif %}
-
+                               
                             {% endfor %}
                         <table class="ui {% if current_user.user_type == 'doctor' %}selectable{% endif %} structured table">
                         <thead>
@@ -118,15 +118,15 @@
                         <p>No prescriptions yet.</p>
                     {% endif %}
                     {% if current_user.user_type == 'doctor' %}<p><button class="ui small button" onclick="location.href='{% url 'add-prescription' %}'"><i class="plus icon"></i>Add a prescription</button></p> {% endif %}
-
+               
 {% endblock %}
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar" style="width: 1217px;height: 47px;">
-        <div class="container"><a class="navbar-brand logo" href="#">Ä°LAÃ‡ REÃ‡ETE TAKÄ°P SÄ°STEMÄ°</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand logo" href="#">İLAÇ REÇETE TAKİP SİSTEMİ</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div
                 class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item" role="presentation"><a class="nav-link" data-aos="fade" href="index.html">Ana Sayfa</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="contact-us.html">Åikayet bildiri</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="contact-us.html">Şikayet bildiri</a></li>
                 </ul>
         </div>
         </div>
