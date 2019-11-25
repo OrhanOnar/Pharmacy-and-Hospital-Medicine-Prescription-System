@@ -177,7 +177,7 @@ INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Ketoti
 INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Kevzara', 'B02BD', 'Human coagulation factor XI');
 INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Keytruda', 'B02BD07', 'Human coagulation factor XIII');
 INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Kineret', 'B06AB', 'Human hemin');
-INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Kisqali', 'J07BG01 ', 'HÃ¼cre kÃ¼ltÃ¼rÃ¼nden Ã¼retilen inaktif kuduz virÃ¼sÃ¼');
+INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Kisqali', 'J07BG01 ', 'Hucre kulturunden uretilen inaktif kuduz virusu');
 INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Klonopin', 'B06AA03', 'Hyaluronidase');
 INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Klor-Con', 'C02DB02', 'Hydralazine HCl');
 INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Kombiglyze XR', 'C03AA03', 'Hydrochlorothiazide');
