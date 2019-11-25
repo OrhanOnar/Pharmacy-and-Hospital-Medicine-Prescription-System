@@ -383,7 +383,7 @@ INSERT INTO MEDICINE ("bcode", "mname") VALUES ('8699587012869','Vitamin D3');
 INSERT INTO MEDICINE ("bcode", "mname") VALUES ('8699790480288','Vitamin E');
 INSERT INTO MEDICINE ("bcode", "mname") VALUES ('8699828090489','Vivitrol');
 INSERT INTO MEDICINE ("bcode", "mname") VALUES ('8699769090012','Voltaren');
-INSERT INTO MEDICINE ("bcode", "mname") VALUES ('8699769090012','Voltaren Gel');
+INSERT INTO MEDICINE ("bcode", "mname") VALUES ('8699769090013','Voltaren Gel');
 INSERT INTO MEDICINE ("bcode", "mname") VALUES ('8699543090528','Vortioxetine');
 INSERT INTO MEDICINE ("bcode", "mname") VALUES ('8699504011371','Vraylar');
 INSERT INTO MEDICINE ("bcode", "mname") VALUES ('8697936091008','Vytorin');
