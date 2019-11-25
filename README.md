@@ -17,28 +17,29 @@
 ## Project Setup,
 After downloading all source files;
 
-For best experience you have to download Pycharm for ide. Here a download link : https://www.jetbrains.com/pycharm/download/
+For best experience you have to download Pycharm for IDE. Here is the download link : https://www.jetbrains.com/pycharm/download/
 
 
 For Database download ORACLE from : https://www.oracle.com/database/technologies/112010-win64soft.html
 
-For best database control DBvisualizer download link:https://www.dbvis.com/
+For best database control solution: DBvisualizer download link:https://www.dbvis.com/
 
-After all installations
 
-Create new project on pycharm and select python flask.After that add all project files to pycharm.
+After all the installation operations have completed:
 
-Install Oracle_cx,flask_login,flask and all imported libraries.
+Create new project on pycharm and select python flask. After that add all project files to pycharm.
 
-Run  dbvisualizer.Configure database and run all given  sql queries.
+Install Oracle_cx,flask_login,flask and other necessary libraries.
+
+Run dbvisualizer. Configure database and run all given sql queries.
 
 Run pycharm project and click to given localhost website.
 
-You have our website.
+Now you can run the application and use it on localhost.
 
-This steps are for local website installation. Buying domain and host processes are too expensive for this project.
+This steps are for localhost installation.
 
-Thank you for your interest..
+Thank you for your interest!
 
 ### Made By
 * Orhan Onar
