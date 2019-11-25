@@ -69,7 +69,9 @@
       <updated>1574354640766</updated>
       <workItem from="1574354690113" duration="21000" />
       <workItem from="1574354875695" duration="3952000" />
-      <workItem from="1574670543247" duration="3865000" />
+      <workItem from="1574670543247" duration="5007000" />
+      <workItem from="1574675764703" duration="228000" />
+      <workItem from="1574677342075" duration="1326000" />
     </task>
     <servers />
   </component>
@@ -77,6 +79,6 @@
     <option name="version" value="1" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Bil372$Bil372.coverage" NAME="Bil372 Coverage Results" MODIFIED="1574674456757" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Bil372$Bil372.coverage" NAME="Bil372 Coverage Results" MODIFIED="1574678782310" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
