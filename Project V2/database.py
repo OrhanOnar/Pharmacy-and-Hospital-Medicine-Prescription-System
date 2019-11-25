@@ -92,6 +92,14 @@ def check_doctor_auth(doctorno):
             resultset.append(dict(row))
         return resultset
 
+def check_doctor_auth(doctorno):
+    with engine.connect() as con:
+        auth = con.execute('SELECT AC."mname", AC."atc_name" FROM ACTIVE_INGREDIENT AC WHERE AC."atc_code" IN ( SELECT "atc_code" FROM ATC_AUTH AA, DOCTOR D WHERE AA."branch" = D."branch" AND D."sno" =:no)',no=doctorno)
+        resultset = []
+        for row in auth:
+            resultset.append(dict(row))
+        return resultset
+
 def depot_inv_check(depot_tax_no):
     with engine.connect() as con:
         inv = con.execute('SELECT M."mname", H."build_name" FROM MEDICINE M, DEPOT D, INVENTORY I, HEALTH_INSTITUTION H WHERE  D."tax_no" = I."tax_no" AND M."bcode" = I."bcode" AND H."tax_no"=D."tax_no" SORT BY M."mname" ASC')
@@ -112,9 +120,9 @@ def create_prescription(doctorno, patientno, bcode, amount):
             con.execute('INSERT INTO CONTENT (pres_no, bcode, amount) VALUES (pres_seq.currval, :bc, :amou)', bc=bcode[i], amou=amount[i]) 
         return
     
- def prescription_check(pres_num):
+ def prescription_check(fname, lname):
     with engine.connect() as con:
-        result = con.execute('SELECT * FROM PATIENT P, PRESCRIPTION PR ,CONTENT C,  WHERE P."sno" = PR."sno_pat"  PR."pres_no" = C."pres_no" AND PR."pres_no" =:pres_num GROUP BY "pres_no"', pres_num=pres_no)
+        result = con.execute('SELECT * FROM PATIENT PA, PERSON P, PRESCRIPTION PR ,CONTENT C,  WHERE P."sno" = PA."sno" AND  PA."sno" = PR."sno_pat" AND PR."pres_no" = C."pres_no" AND P."fname" =:fname AND P."lname" =:lname GROUP BY "pres_no"', fn=fname, ln=lname)
         return result 
   
 def pharmacy_inv_check(pharmacist_num):
@@ -128,9 +136,9 @@ def pharmacy_inv_med_search(pharmacist_num, med_name):
         result = con.execute('SELECT M."bcode", M."mname", I."amount" FROM PHARMACIST P, INVENTORY I, MEDICINE M WHERE P."tax_no" = I."tax_no" AND I."bcode" = M."bcode" AND M."mname"=:medm AND P."sno" =:psno', medm=med_name, psno=pharmacist_num)
         return result
     
-def create_receipt(phar_tax_no, patient_no, bcode, amount):
+def create_receipt(pres_no, patient_no, bcode, amount):
     with engine.connect() as con:
-        con.execute('INSERT INTO RECEIPT (phar_tax_no, pat_sno, receipt_id) VALUES (:ptax, :pno, rec_seq.nextval)', ptax=phar_tax_no, pno=patient_no)
+        con.execute('INSERT INTO RECEIPT (pres_no, pat_sno, receipt_id) VALUES (:pno, :patno, rec_seq.nextval)', pno=pres_no, patno=patient_no)
         for i in range(0, len(bcode)):
             con.execute('INSERT INTO RECEIPT (receipt_id, bcode, amount) VALUES (rec_seq.currval, :bc, :amou)', bc=bcode[i], amou=amount[i])
             con.execute('UPDATE INVENTORY I SET amount = (amount - :amou) WHERE I."tax_no" =:ptax AND I."bcode" =:bc', ptax=phar_tax_no, bc=bcode[i], amou=amount[i])
