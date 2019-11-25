@@ -422,7 +422,7 @@ INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Xulane
 INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Xultophy', 'V04CJ01', 'Tirotropin alfa');
 INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Xylitol', 'J01GB01', 'Tobramycin inhalation powder');
 INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Xylocaine', 'C03CA04', 'Torasemide 200 mg');
-INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Xylocaine Jelly', 'DSÃ– tarafÄ±ndan  ATC kodu henÃ¼z belirlenmemiÅŸ ilaÃ§', 'Tranilast');
+INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Xylocaine Jelly', 'C03CA23', 'Tranilast');
 INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Xylometazoline', 'L01XC03', 'Trastuzumab');
 INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Xylometazoline nasal', 'L01AB02', 'Treosulfan');
 INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Xyosted', 'B01AC21', 'Treprostinil Sodium');
