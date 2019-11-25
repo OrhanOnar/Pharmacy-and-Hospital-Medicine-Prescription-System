@@ -127,15 +127,15 @@ CREATE TABLE INVENTORY (
   "amount" number(3),
   PRIMARY KEY ("tax_no", "bcode"),
   FOREIGN KEY ("tax_no") REFERENCES HEALTH_INSTITUTION("tax_no") ON DELETE CASCADE,
-  FOREIGN KEY ("bcode") REFERENCES MEDICINE("bcode"),
+  FOREIGN KEY ("bcode") REFERENCES MEDICINE("bcode")
 );
 
 CREATE TABLE RECEIPT (
-  "phar_tax_no" varchar(10) NOT NULL,
+  "pres_no" int NOT NULL,
   "pat_sno"  varchar(13) NOT NULL,
   "receipt_id"  int     NOT NULL UNIQUE,
-  PRIMARY KEY("phar_tax_no", "pat_tax_no", "receipt_id"),
-  FOREIGN KEY ("phar_tax_no") REFERENCES PHARMACY("tax_no"),
+  PRIMARY KEY("pres_no", "pat_sno"),
+  FOREIGN KEY ("pres_no") REFERENCES PRESCRIPTION("pres_no"),
   FOREIGN KEY ("pat_sno") REFERENCES PATIENT("sno") ON DELETE CASCADE
  );
               
@@ -155,7 +155,7 @@ CREATE TABLE DEPOT (
 );
 
 CREATE TABLE TRANSA (
-  "trans_id"     int      NOT NULL,
+  "trans_id"     int      NOT NULL UNIQUE,
   "tax_no_dep"    varchar(10)      NOT NULL,
   "tax_no_ph"     varchar(10)      NOT NULL,
   "time_of_trans" date,
