@@ -38,12 +38,12 @@ INSERT INTO PRESCRIPTION ("sno_doc","sno_pat", "pres_no", "expire" ,"provision",
 INSERT INTO PRESCRIPTION ("sno_doc","sno_pat", "pres_no", "expire" ,"provision","kind") VALUES ('8691510706549','3126185921650','456','10-may-1976','15-may-1976','cold');
 
 
-INSERT INTO MEDICINE  ("bcode"  , "mname"  , "use_type" ) VALUES ('123', 'A01AA02', 'for_flu');
-INSERT INTO MEDICINE  ("bcode"  , "mname"  , "use_type" ) VALUES ('345', 'A01AA05', 'for_fever');
-INSERT INTO MEDICINE  ("bcode"  , "mname"  , "use_type" ) VALUES ('678', 'A01AB02', 'for_flu');
-INSERT INTO MEDICINE  ("bcode"  , "mname"  , "use_type" ) VALUES ('442', 'A01AB03', 'for_fever');
-INSERT INTO MEDICINE  ("bcode"  , "mname"  , "use_type" ) VALUES ('345', 'A01AB05', 'for_flu');
-INSERT INTO MEDICINE  ("bcode"  , "mname"  , "use_type" ) VALUES ('541', 'A01AB06', 'for_fever');
+INSERT INTO MEDICINE  ("bcode"  , "mname") VALUES ('123', 'A01AA02');
+INSERT INTO MEDICINE  ("bcode"  , "mname") VALUES ('345', 'A01AA05');
+INSERT INTO MEDICINE  ("bcode"  , "mname") VALUES ('678', 'A01AB02');
+INSERT INTO MEDICINE  ("bcode"  , "mname") VALUES ('442', 'A01AB03');
+INSERT INTO MEDICINE  ("bcode"  , "mname") VALUES ('345', 'A01AB05');
+INSERT INTO MEDICINE  ("bcode"  , "mname") VALUES ('541', 'A01AB06');
 
 
 INSERT INTO ACTIVE_INGREDIENT ("mname"      , "atc_name"   , "atc_code"  ) VALUES ('A01AA02', '123', '5');
