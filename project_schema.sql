@@ -55,9 +55,9 @@ CREATE TABLE MEDICINE_PROPS (
 
 CREATE TABLE ACTIVE_INGREDIENT (
   "mname"      varchar(35)    NOT NULL,
-  "atc_name"   varchar(100),
-  "atc_code"  varchar(8),
-  PRIMARY KEY ("mname", "atc_code"),
+  "atc_name"   varchar(150),
+  "atc_code"  varchar(10),
+  PRIMARY KEY ("mname", "atc_name"),
   FOREIGN KEY ("mname") REFERENCES MEDICINE("mname") ON DELETE CASCADE 
 );
 
