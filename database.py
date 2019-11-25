@@ -133,7 +133,7 @@ def create_receipt(phar_tax_no, patient_no, bcode, amount):
     with engine.connect() as con:
         con.execute('INSERT INTO RECEIPT ("phar_tax_no", "pat_sno", "receipt_id") VALUES (:ptax, :pno, rec_seq.nextval)', ptax=phar_tax_no, pno=patient_no)
         for i in range(0, len(bcode)):
-            con.execute('INSERT INTO RECEIPT (receipt_id, bcode, amount) VALUES (rec_seq.currval, :bc, :amou)', bc=bcode[i], amou=amount[i])
+            con.execute('INSERT INTO RECEIPT ("receipt_id", "bcode", "amount") VALUES (rec_seq.currval, :bc, :amou)', bc=bcode[i], amou=amount[i])
             con.execute('UPDATE INVENTORY I SET amount = (amount - :amou) WHERE I."tax_no" =:ptax AND I."bcode" =:bc', ptax=phar_tax_no, bc=bcode[i], amou=amount[i])
         return
     
