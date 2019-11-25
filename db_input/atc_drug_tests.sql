@@ -205,7 +205,7 @@ INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Metfor
 INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Methadone', 'C01CA02', 'Isoproterenol hydrochloride');
 INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Methimazole', 'R07AX02', 'Ivacaftor');
 INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Methocarbamol', 'R07AX30', 'Ivacaftor and lumacaftor');
-INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Methotrexate', 'R07AX31 ', 'Ivacaftor Ivacaftor, tezacaftor')
+INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Methotrexate', 'R07AX31 ', 'Ivacaftor Ivacaftor, tezacaftor');
 INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Methylphenidate', 'P02CF01', 'Ivermectin');
 INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Methylprednisolone', 'P02CF01', 'Ivermectin');
 INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Metoclopramide', 'L01DC04', 'Ixabepilone');
@@ -268,7 +268,7 @@ INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Oxymet
 INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Oxymorphone', 'L01DC03', 'Mitomycin (2 mg');
 INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Oxytocin', 'L01XX23', 'Mitotane');
 INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Ozempic', 'L01XC25 ', '"Mogamulizumab"');
-INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Salbutamol', 'D11AX13', 'Monobenzone(monobenzyl ether of hydroquinone)';
+INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Salbutamol', 'D11AX13', 'Monobenzone(monobenzyl ether of hydroquinone)');
 INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Saw Palmetto', 'A11JA', 'Multivitamins (A,D,E,K');
 INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Saxenda', 'A11JB', 'Multivitamins (A,D,E,K) and minerals');
 INSERT INTO ACTIVE_INGREDIENT ("mname", "atc_code", "atc_name") VALUES ( 'Scopolamine', 'C07AA12', 'Nadolol');
