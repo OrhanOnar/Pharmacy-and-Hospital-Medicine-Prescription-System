@@ -2,7 +2,7 @@
 <html>
 
 <head>
-     <meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Home - İLAÇ REÇETE TAKİP SİSTEMİ</title>
     <link rel="stylesheet" href="{{url_for('static',filename='bootstrap/css/bootstrap.min.css')}}">
@@ -14,58 +14,54 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
     <link rel="stylesheet" href="{{url_for('static',filename='css/smoothproducts.css')}}">
 </head>
-
 <body>
-    <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar" style="width: 1217px;height: 47px;">
+    <div class="highlight-clean">
+        <div class="container">
+            <div class="intro"></div>
+            <div class="buttons"></div>
+        </div>
+        <h2 class="text-center">Eczacı Giriş Sistemi</h2>
+        <p class="text-center">Reçete numarası yazarak reçeteleri sorgulayabilirsiniz.</p>
+    <div class="row justify-content-center">
+    <div class="col-md-4">
+        <form method="POST" action="" class="form">
+            {{ csrf_input }}
+            <div class="form-group">
+                <label>Recete Numarası:</label>
+                <input type="text" name="recete_no" class="form-control">
+            </div>
+            <input type="submit" class="btn btn-primary btn-block" />
+        </form>
+    </div>
+
+    </div>
+<table width="30%" bgcolor="0099CC" align="center">
+<tbody><tr>
+<td colspan="2"><center><font size="4"><b></b></font></center></td>
+</tr>
+<tr>
+    <td><input type="Reset"> </td>
+</tr>
+    <div>
+        <p class="text-center">Reçete bilgileri:</p>
+
+                {{prescript}}
+
+    </div>
+</tbody></table></form><img src="{{url_for('static',filename='img/eczaci.jpg')}}"><img src="{{url_for('static',filename='img/eczane.jpg')}}">
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar"
+        style="width: 1217px;height: 47px;">
         <div class="container"><a class="navbar-brand logo" href="#">İLAÇ REÇETE TAKİP SİSTEMİ</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div
                 class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link " href="http://127.0.0.1:5000/">Ana Sayfa</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link " d href="http://127.0.0.1:5000/">CIKIS YAP</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="http://127.0.0.1:5000/contact-us/">Şikayet bildiri</a></li>
                 </ul>
         </div>
         </div>
     </nav>
-  </main>
- <div class="container">
-
-    <div class="row">
-    <br>
-        <div id = "login_form" class="col-md-3 col-md-offset-4" style="margin-left: 428px;">
-        <form  class="form-horizontal" action="" method="POST" role="form">
-          <div id="legend">
-            <br>
-            <br>
-            <br>
-            <legend class="">Giris Yapiniz</legend>
-          </div>
-          {{ form.hidden_tag() }}
-          {% for field in form if field.widget.input_type != 'hidden' %}
-          <div class="control-group">
-            <br>
-            <label class="control-label" for="{{ field.name }}" > {{ field.label }}</label>
-            <div class="control">
-              {{ field(class_="form-control input-md") }}
-            </div>
-          </div>
-          {% endfor %}
-          <div class="control-group">
-          <br>
-            <button type="submit" id="login_btn" class="btn btn-default">Login</button>
-          </div>
-          <br>
-        </form>
-      </div>
-    </div>
-</div>
-    </main>
-    <footer class="page-footer dark">
-        <div class="footer-copyright">
-            <p>© 2019 Copyright</p>
-        </div>
-    </footer>
-    <script src="static/js/jquery.min.js"></script>
+   <script src="static/js/jquery.min.js"></script>
     <script src="static/bootstrap/js/bootstrap.min.js"></script>
     <script src="static/js/bs-animation.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
@@ -73,5 +69,4 @@
     <script src="static/js/smoothproducts.min.js"></script>
     <script src="static/js/theme.js"></script>
 </body>
-
 </html>
